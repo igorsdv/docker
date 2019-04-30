@@ -3,11 +3,11 @@ FROM debian:stretch-slim
 ARG HOST_UID=1000
 ARG PHP_VERSION=7.2
 
-RUN apt-get update && apt-get install -y wget gnupg ca-certificates apt-transport-https \
+RUN apt-get update -q && apt-get install -yq --no-install-recommends wget gnupg ca-certificates apt-transport-https \
     && wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add - \
     && echo "deb https://packages.sury.org/php/ stretch main" > /etc/apt/sources.list.d/php.list
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update -q && apt-get install -yq --no-install-recommends \
     php${PHP_VERSION}-bcmath \
     php${PHP_VERSION}-bz2 \
     php${PHP_VERSION}-common \
@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     php${PHP_VERSION}-xsl \
     php${PHP_VERSION}-zip
 
-RUN apt-get install -y msmtp msmtp-mta
+RUN apt-get install -yq --no-install-recommends msmtp msmtp-mta
 
 RUN apt-get -q autoclean && rm -r /var/lib/apt/lists/*
 
