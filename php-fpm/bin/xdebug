@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [[ "$1" = "off" ]]; then
+    phpdismod xdebug
+    echo "Xdebug disabled."
+else
+    phpenmod xdebug
+    echo "Xdebug enabled."
+fi
+
+kill -USR2 $(cat /run/php-fpm.pid)
