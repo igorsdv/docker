@@ -46,5 +46,7 @@ RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/local/sbin/php-fpm
 
 WORKDIR /srv/www
 
+STOPSIGNAL SIGQUIT
+
 EXPOSE 9000
 CMD ["php-fpm"]
